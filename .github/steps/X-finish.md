@@ -3,32 +3,36 @@
   Review what we learned, ask for feedback, provide next steps.
 -->
 
-## Finish
+## 完成
 
 <img src=https://octodex.github.com/images/poptocat_v2.png alt=celebrate width=300 align=right>
 
-### Congratulations, you've completed this course!
+### 恭喜你，成功完成了本课程!
 
-In this course, you've learned a lot about developing custom actions using JavaScript and Actions Toolkit.
+在本课程中，你学习了如何使用 JavaScript 和 Actions Toolkit 开发自定义 Action，并将其集成到你的工作流中。
 
-## Publishing your actions
+## 发布你的 Action
 
-Publishing your actions is a great way to help others in your team and across the GitHub community. Although actions do not need to be published to be consumed, by adding them to the marketplace you make them easier to find.
+将你的 Action 发布到 GitHub Marketplace 是一个很好的方式，不仅能帮助你的团队，也能惠及整个 GitHub 社区。
+虽然 Action 并不一定要发布才能使用，但发布后其他人可以更方便地找到并使用它。
 
-Some notable actions you will find on the marketplace are:
+Marketplace 上的一些热门 Action 示例：
 
-- [Actions for Discord](https://github.com/marketplace/actions/actions-for-discord)
-- [GitHub Action for Slack](https://github.com/marketplace/actions/github-action-for-slack)
-- [Jekyll action](https://github.com/marketplace/actions/jekyll-action)
-- [Run Jest](https://github.com/marketplace/actions/run-jest)
+* [Actions for Discord](https://github.com/marketplace/actions/actions-for-discord)
+* [GitHub Action for Slack](https://github.com/marketplace/actions/github-action-for-slack)
+* [Jekyll action](https://github.com/marketplace/actions/jekyll-action)
+* [Run Jest](https://github.com/marketplace/actions/run-jest)
 
-And that just scratches the surface of the 1600+ and counting actions you will find on the marketplace
+这仅仅是 Marketplace 上 1600+ 个 Action 的冰山一角。
 
-Follow [this guide](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/publishing-actions-in-github-marketplace#publishing-an-action) to learn how to publish your actions to the GitHub Marketplace
+想要学习如何将你的 Action 发布到 GitHub Marketplace，可以参考[官方指南](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/publishing-actions-in-github-marketplace#publishing-an-action)。
 
-### What's next?
 
-- [Take another GitHub Skills course](https://github.com/skills).
-- We'd love to hear what you thought of this course in our [discussion board](https://github.com/orgs/skills/discussions/categories/write-javascript-actions).
-- [Read the GitHub Getting Started docs](https://docs.github.com/en/get-started).
-- To find projects to contribute to, check out [GitHub Explore](https://github.com/explore).
+### 接下来可以做什么？
+
+* 继续学习其他 [GitHub Skills 课程](https://github.com/skills)
+* 在我们的 [讨论区](https://github.com/orgs/skills/discussions/categories/write-javascript-actions) 分享你对本课程的体验
+* 阅读 [GitHub 入门文档](https://docs.github.com/en/get-started)
+* 想找开源项目参与贡献？浏览 [GitHub Explore](https://github.com/explore)
+
+恭喜你迈出了成为 GitHub Action 开发者的重要一步！ 🎉

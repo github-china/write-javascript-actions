@@ -8,9 +8,13 @@
   Add your open source license, GitHub uses MIT license.
 -->
 
-# Write JavaScript Actions
+[English](https://github.com/skills/write-javascript-actions) | 中文
 
-_Write your own GitHub JavaScript Action and automate customized tasks unique to your workflow._
+> 本课程翻译自 Github Skills，全部课程请点击 [这里查看](https://www.github-zh.com/getting-started)
+
+# 编写 JavaScript Actions
+
+_编写属于自己的 GitHub JavaScript Action，用它来自动化你的工作流程。_
 
 </header>
 
@@ -22,23 +26,23 @@ _Write your own GitHub JavaScript Action and automate customized tasks unique to
 
 ## Welcome
 
-Write your own GitHub JavaScript Action and automate customized tasks unique to your workflow.
+在这门课程中，你将学习如何编写并发布属于你自己的 JavaScript Action，来定制你的工作流程。
 
-- **Who is this for**: Developers, GitHub users, users new to Git, students, managers, and for teams.
-- **What you'll learn**: How to consume actions within a workflow file, create custom JavaScript based actions and publish your newly created action to the marketplace.
-- **Prerequisites**: Before you start, you should be familiar with GitHub, GitHub Actions, and Continuous Integration with GitHub Actions.
-- **How long**: This course takes about 1 to 2 hours to be completed.
+- **目标人群**：开发者、GitHub 用户、Git 新手、学生、项目管理者以及团队成员。
+- **你将学到**：如何在工作流文件中使用现有的 Actions，以及如何创建自定义的 JavaScript Action，并将它发布到 GitHub Marketplace。
+- **先决条件**：在开始之前，你需要对 GitHub、GitHub Actions 以及持续集成（CI）有基本了解。
+- **课程时长**：大约需要 1 到 2 小时完成课程。
 
-In this course, you will:
+在本课程中，你将：
 
-1. Initialize a JavaScript project
-2. Configure an action
-3. Create a metadata file
-4. Create JavaScript files
-5. Add actions to workflow file
-6. Trigger action
+1. 初始化一个 JavaScript 项目
+2. 配置一个 Action
+3. 创建元数据文件
+4. 编写 JavaScript 脚本
+5. 在 workflow 文件中添加 Action
+6. 触发 Action 运行
 
-### How to start this course
+### 开始学习本课程
 
 <!-- For start course, run in JavaScript:
 'https://github.com/new?' + new URLSearchParams({
@@ -51,14 +55,14 @@ In this course, you will:
 }).toString()
 -->
 
-[![start-course](https://user-images.githubusercontent.com/1221423/235727646-4a590299-ffe5-480d-8cd5-8194ea184546.svg)](https://github.com/new?template_owner=skills&template_name=write-javascript-actions&owner=%40me&name=skills-write-javascript-actions&description=My+clone+repository&visibility=public)
+[![start-course](https://user-images.githubusercontent.com/1221423/235727646-4a590299-ffe5-480d-8cd5-8194ea184546.svg)](https://github.com/new?template_owner=github-china&template_name=write-javascript-actions&owner=%40me&name=skills-write-javascript-actions&description=My+clone+repository&visibility=public)
 
-1. Right-click **Start course** and open the link in a new tab.
-2. In the new tab, most of the prompts will automatically fill in for you.
-   - For owner, choose your personal account or an organization to host the repository.
-   - We recommend creating a public repository, as private repositories will [use Actions minutes](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions).
-   - Scroll down and click the **Create repository** button at the bottom of the form.
-3. After your new repository is created, wait about 20 seconds, then refresh the page. Follow the step-by-step instructions in the new repository's README.
+1. 右键点击上方 **Start course** 按钮，选择在新标签页中打开链接。
+2. 在新页面中根据系统提示新建一个仓库。
+   - 仓库名称、描述这些字段系统已经帮我们自动填充好了，您可以按需修改。
+   - 建议选择公开仓库，因为私有仓库有[GitHub Actions 分钟数限制](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions)。
+   - 最后点击 Create repository 按钮
+3. 仓库创建完毕后，等待大约 20 秒（等待Action执行），然后刷新页面。注意是刷新您仓库的页面，不是本课程的页面。如果页面没有变化，请继续等待。然后按照 README 中的步骤一步步进行。
 
 <footer>
 

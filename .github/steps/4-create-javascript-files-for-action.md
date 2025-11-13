@@ -4,39 +4,44 @@
   Define terms and link to docs.github.com.
 -->
 
-## Step 4: Create the JavaScript files for your action
+## Step 4: 为你的 Action 编写 JavaScript 代码
 
-_Good job adding the metadata file! :dancer:_
+_元数据文件已经加好了！ :dancer:_
 
-## Files
+## 文件结构
 
-As you probably know, in JavaScript and other programming languages it is common to break your code into modules so that it is easier to read and maintain going forward. Since JavaScript actions are just programs written in JavaScript that run based on a specific trigger we are able to make our action code modular as well.
+在 JavaScript（以及其他编程语言）中，我们通常会把代码拆分成多个模块，方便阅读和维护。
+由于 JavaScript Actions 本质上也是一段根据特定触发条件运行的 JS 程序，我们同样可以采用模块化的方式组织代码。
 
-To do so we will create two files. One of them will contain the logic to reach out to an external API and retrieve a joke for us, the other will call that module and print the joke to the actions console for us. We will be extending this functionality in our third and final action.
+在本步骤中，我们将创建两个文件：
 
-### Fetching a joke
+1. **`joke.js`**：负责从外部 API 获取一个笑话；
+2. **`main.js`**：调用上面的模块，并将笑话输出到控制台。
 
-**Joke API**
+在下一步中，我们还会进一步扩展它的功能。
 
-The first file will be `joke.js` and it will fetch our joke for us. We will be using the [icanhazdadjoke API](https://icanhazdadjoke.com/api) for our action. This API does not require any authentication, but it does however that we set a few parameters in the [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). We need to point out what those are when we get to the code, however it is outside of the scope of this course to cover HTTP in any depth.
+### 获取笑话数据
 
-When we make our request to this API we will get back a JSON Object in the response. That Object looks like this:
+**笑话 API**
 
-```
+我们首先创建 `joke.js` 文件，用来从 [icanhazdadjoke API](https://icanhazdadjoke.com/api) 获取笑话。
+这个 API 不需要认证，但需要在请求头中设置一些参数。
+
+调用该 API 后，我们会收到一个 JSON 对象，格式如下：
+
+```json
 {
-  id: '0LuXvkq4Muc',
-  joke: "I knew I shouldn't steal a mixer from work, but it was a whisk I was willing to take.",
-  status: 200
+  "id": "0LuXvkq4Muc",
+  "joke": "I knew I shouldn't steal a mixer from work, but it was a whisk I was willing to take.",
+  "status": 200
 }
 ```
 
-It contains 3 key/value pairs of data that we can use in our own program or service. In our case, we are only interested in the `joke` field.
+返回的数据包含三个键值对，其中我们只关心 `joke` 字段，它就是笑话的内容。
 
-**Joke Module**
+**笑话模块实现**
 
-We will create a file named `joke.js` and it will reside in the `.github/actions/joke-action` directory.
-
-The joke module will look like this:
+在 `.github/actions/joke-action` 目录下创建文件 `joke.js`，内容如下：
 
 ```javascript
 const request = require("request-promise");
@@ -59,31 +64,22 @@ async function getJoke() {
 module.exports = getJoke;
 ```
 
-Need an advanced description of the <code>joke.js</code> source code?
+**代码说明：**
 
-We first bring in the `request-promise` library that we installed earlier using `npm`.
+* 首先导入我们之前通过 `npm` 安装的 `request-promise` 库；
+* 定义 `options` 对象，其中包含请求方式、目标 URL 以及请求头；
 
-Next we define a set of `options` that the `request-promise` library will use when it makes the request.
+   * `Accept` 表示希望返回 JSON 格式；
+   * `User-Agent` 是 API 要求的标识；
+* 定义一个异步函数 `getJoke()`，发送请求并获取响应；
+* 函数返回 JSON 对象中的 `joke` 字段内容（每次调用都会返回不同的笑话）；
+* 最后通过 `module.exports` 导出函数，以便在 `main.js` 中使用。
 
-Read more about [request-promise](https://github.com/request/request-promise/)
+### 创建 Action 的主入口
 
-Inside of the `options` block we add a key named `headers`. This defines the HTTP headers that the **icanhazdadjoke** API expects in each request that comes it's way.
+**Main 模块**
 
-**icanhazdadjoke** cares the most about the keys, **Accept** and **User-Agent**, so we need to make sure we fill them in.
-
-Next we define an **asynchronous JavaScript function** to make the request for us, storing the JSON Object that is returned in a variable named `res`.
-
-Lastly, we `return` the `res.joke` which is only the value associated with the `joke` key of the JSON Object. This value will be random every time our action runs because of how we are interacting with the **icanhazdadjoke** API.
-
-This file finishes up by exporting the newly created function so that we can use it in our `main.js` file.
-
-### Creating the main entry point for your action
-
-**Main Module**
-
-We will also create a file named `main.js` that resides inside of the `.github/actions/joke-action` directory.
-
-That file will look like this:
+在同一目录下创建 `main.js` 文件，内容如下：
 
 ```javascript
 const getJoke = require("./joke");
@@ -98,22 +94,19 @@ async function run() {
 run();
 ```
 
-Need an advanced description of the <code>main.js</code> source code?
+**代码说明：**
 
-Like we did in the `joke.js` file, we are first going to bring in our dependencies. Only this time, our dependencies include something we wrote! To do that we simply use `require()` to point to the location of the file we wish to bring in.
+* 首先引入我们自己写的 `joke.js` 模块，以及 GitHub 提供的 `@actions/core` 库；
+* 定义一个异步函数 `run()`：
 
-We also bring in `@actions/core` so that we can set the output of our action.
+   * 调用 `getJoke()` 获取笑话内容并存入变量 `joke`；
+   * 将笑话打印到控制台；
+   * 使用 `core.setOutput()` 将笑话内容设置为输出参数 `joke-output`（稍后会被其他步骤使用）。
+* 最后调用 `run()` 来执行整个流程。
 
-Next we write another **asynchronous JavaScript function** that stores the return value of `getJoke()` in a variable called **joke**.
+### :keyboard: 实操环节
 
-Then we log the joke to the console.
-
-Finally we finish the function with by setting the contents of the joke as the value of the `joke-output` output parameter. We will use this output later in the course.
-_Don't forget to call the `run()` function._
-
-### :keyboard: Activity 1: Creating the JavaScript files for your new action.
-
-1. Create and add the following contents to the `.github/actions/joke-action/joke.js` file:
+1. 创建文件 `.github/actions/joke-action/joke.js`，内容如下：
 
    ```javascript
    const request = require("request-promise");
@@ -136,8 +129,8 @@ _Don't forget to call the `run()` function._
    module.exports = getJoke;
    ```
 
-2. Save the `joke.js` file.
-3. Create and add the following contents to the `.github/actions/joke-action/main.js` file:
+2. 保存 `joke.js` 文件。
+3. 创建文件 `.github/actions/joke-action/main.js`，内容如下：
 
    ```javascript
    const getJoke = require("./joke");
@@ -152,12 +145,14 @@ _Don't forget to call the `run()` function._
    run();
    ```
 
-4. Save the `main.js` file.
-5. Commit the changes to this branch and push them to GitHub:
+4. 保存 `main.js` 文件。
+5. 提交修改并推送到 GitHub：
+
    ```shell
    git add joke.js main.js
    git commit -m 'creating joke.js and main.js'
    git pull
    git push
    ```
-6. Wait about 20 seconds then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
+
+6. 等待大约 20 秒后刷新本页面。[GitHub Actions](https://docs.github.com/en/actions) 会自动检测更新，并进入下一步。
